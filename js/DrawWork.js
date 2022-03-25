@@ -9,6 +9,7 @@ let privateAtributes = {
     'ctx': null,
     'canClearScreen': true,
     'animationId': null,
+    'isStopped': false
 }
 
 
@@ -35,7 +36,7 @@ export class DrawWork {
         privateAtributes.ctx = privateAtributes.canvas.getContext('2d');
         this.width = width;
         this.height = height;
-        this.__isStopped__ = false;
+        privateAtributes.isStopped = false;
         privateAtributes.canvas.width = this.width;
         privateAtributes.canvas.height = this.height;
         privateAtributes.drawWorkIstance = this;
@@ -47,12 +48,12 @@ export class DrawWork {
     }
 
     stop() {
-        this.__isStopped__ = true;
+        privateAtributes.isStopped = true;
         window.cancelAnimationFrame(privateAtributes.animationId);
     }
     
     run() {
-        this.__isStopped__ = false;
+        privateAtributes.isStopped = false;
         loop();
     }
 
@@ -276,7 +277,7 @@ export class DrawWork {
     }
 
     static random(minValue, MaxValue) {
-        return minValue + Math.random() * (MaxValue - minValue);
+        return Math.floor(minValue + Math.random() * (MaxValue - minValue));
     }
 }
 
