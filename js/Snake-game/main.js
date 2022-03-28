@@ -1,9 +1,14 @@
 import {
     DrawWork
 } from "../DrawWork.js";
+
 import {
     Snake
 } from "./Snake.js";
+
+import {
+    ControlerMobile
+} from "../controleMobile.js";
 
 const GAME = new DrawWork(600, 400, 'canvas');
 const WIDTH = 10;
@@ -16,6 +21,8 @@ let snake = new Snake(9, 14, grid);
 let thereIsfruitInGame = false;
 let isGameOver
 let score = 0;
+
+const controler = new ControlerMobile(document.getElementById('controler-container'));
 
 function makeFruit() {
     if(!thereIsfruitInGame) {
@@ -83,10 +90,11 @@ function scoreUp() {
     }
 }
 
-GAME.draw(loop);
-
 window.addEventListener('keydown', keydown);
 
 function keydown(e) {
     snake.move(e.key);
 }
+
+GAME.draw(loop);
+controler.start();

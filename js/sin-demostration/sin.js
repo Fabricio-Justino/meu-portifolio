@@ -1,15 +1,20 @@
-import {DrawWork} from "../DrawWork.js";
+import {
+    DrawWork
+} from "../DrawWork.js";
 
-
-const canvas = new DrawWork();
+const $container = document.querySelector('.container');
+console.log($container);
+const canvas = new DrawWork($container.clientWidth, $container.clientHeight, 'canvas');
 const ctx = canvas.getContext();
 let up;
 
 let x, y, radius;
 
-x = 60, y = canvas.height / 2, radius = 50;
+x = (canvas.width / 100) * 15;
+y = canvas.height / 2;
+radius = (canvas.width / 100) * 12;
 
-let angle = Math.PI/2;
+let angle = Math.PI / 2;
 
 const spots = [];
 
@@ -17,7 +22,7 @@ update();
 canvas.stopToClearScreen();
 
 function update() {
-    canvas.backGround(0,0,0,0.25);
+    canvas.backGround(0, 0, 0, 0.25);
     canvas.circle(x, y, radius, 'white');
 
     let point = {
@@ -25,7 +30,7 @@ function update() {
         y: y + Math.cos(angle) * radius,
         radius: radius - radius * (80 / 100),
         getArm() {
-            return (x + y) - radius * 2;
+            return (x + y) - radius;
         }
     };
 
@@ -35,7 +40,7 @@ function update() {
     canvas.dot(point.x, point.y, point.radius, 'white');
     angle += 0.05;
     angle = (angle > Math.PI * 2) ? 0 : angle;
-    
+
     canvas.line(point.x, point.y, point.getArm(), point.y);
 
     spots.push({
@@ -55,11 +60,18 @@ function render() {
         ctx.lineTo(spot.x, spot.y);
         spot.x++;
     }
-    
+
     if (spots.length > 410) spots.shift();
-    
+
     ctx.stroke();
     ctx.closePath();
 }
 
 canvas.draw(update);
+
+window.addEventListener('resize', function (e) {
+    canvas.setDimension($container.clientWidth, $container.clientHeight);
+    x = (canvas.width / 100) * 15;
+    y = canvas.height / 2;
+    radius = (canvas.width / 100) * 12;
+});

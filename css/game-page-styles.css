@@ -54,18 +54,6 @@ input[type="button"] {
     align-items: center;
 }
 
-/* keyframes */
-
-@keyframes neon {
-    from {
-        filter: drop-shadow(0 0 0 var(--neon-color));
-    }
-
-    to {
-        filter: drop-shadow(0 0 5px var(--neon-color));
-    }
-}
-
 /* classes auxiliares */
 
 .container {
@@ -120,10 +108,46 @@ div.logo {
     font-weight: bold;
 }
 
-header nav {
+.device-desktop nav {
     display: flex;
     gap: 15px;
     align-items: center;
+}
+
+.device-mobile {
+    display: none;
+}
+
+.device-mobile h2 {
+    cursor: pointer;
+}
+
+.slideToggle {
+    transition: height 0.5s ease-in-out;  
+}
+
+.slideToggle:not(.active) {
+    display: none;
+}
+
+.device-mobile nav {
+    position: absolute; 
+    top: 48px;
+    left: 0;
+    z-index: 999;
+
+    background-color: grey;
+
+    width: 100%;  
+}
+
+.device-mobile nav a {
+    display: block;
+    text-align: center;
+    
+    padding: 7px 0;
+    margin-bottom: 5px;
+    background-color: lightgrey; 
 }
 
 /* main */
@@ -185,20 +209,6 @@ section.main-topic .underline-text>div {
     text-align: center;
 
     animation: expand 5s alternate ease-in-out infinite;
-}
-
-@keyframes expand {
-    from {
-        padding: 1px 25%;
-    }
-
-    to {
-        padding: 1px 40%;
-    }
-}
-
-section.main-topic>.container p {
-    font-size: var(--large-text);
 }
 
 /* -- main-topic -- */
@@ -285,6 +295,44 @@ footer section.copyrights {
 }
 
 /* footer */
+
+/* keyframes */
+
+@keyframes neon {
+    from {
+        filter: drop-shadow(0 0 0 var(--neon-color));
+    }
+
+    to {
+        filter: drop-shadow(0 0 5px var(--neon-color));
+    }
+}
+
+@keyframes expand {
+    from {
+        padding: 1px 25%;
+    }
+
+    to {
+        padding: 1px 40%;
+    }
+}
+
+section.main-topic>.container p {
+    font-size: var(--large-text);
+}
+
+@keyframes slide {
+    from {
+       height: 0%;
+    }
+    to {
+        height: 100%;
+    }
+}
+
+/* media queries */
+
 @media screen and (max-width: 700px) {
     section.game-library .game-play-wrap {
         flex-wrap: wrap;
@@ -301,5 +349,13 @@ footer section.copyrights {
         flex-direction: column;
         align-items: center;
         gap: 10px;
+    }
+
+    .device-desktop {
+        display: none;
+    }
+
+    .device-mobile, .device-mobile h2{
+        display: block; 
     }
 }
