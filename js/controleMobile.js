@@ -35,7 +35,7 @@ export class ControlerMobile {
     applyStyle(container) {
         const c = container;
 
-        c.style.display = 'block';
+        //c.style.display = 'none';
         c.style.margin = '0 auto';
         c.style.maxWidth = '600px';
         c.style.maxHeight = '50vh'
