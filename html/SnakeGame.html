@@ -7,35 +7,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake Game</title>
 
+    <link rel="stylesheet" href="../css/canvas-mobile.css">
+
     <style>
         canvas {
             display: block;
         }
 
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        
         div.game-over {
             box-sizing: border-box;
-            width: 600px;
-            padding: 10px;
+
+            width: 100%;
+
+            padding: 10px 0;
+
             background-color: royalblue;
 
             text-align: center;
 
-            font-size: 30px;
+            width: 100%;
+            font-size: 15px;
             font-weight: bold;
             color: black;
         }
 
+        #game-over {
+            max-width: 900px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 
 <body>
-    <canvas id="canvas">
-        seu navegador não suporta o canvas
-    </canvas>
 
-    <div id="game-over"></div>
-    <div id="controler-container" style="width: 600px; height: 400px;">
+    <div class="container">
+        <canvas id="canvas">
+            seu navegador não suporta o canvas
+        </canvas>
+    </div>
 
+    <div id="game-over">
+        
+    </div>
+    
+    <div class="controller">
     </div>
 
     <script type="module" src="../js/Snake-game/main.js"></script>
