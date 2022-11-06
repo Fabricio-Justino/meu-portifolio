@@ -255,6 +255,13 @@ section.game-library .game-play {
     padding: 0 0 0 0;
 }
 
+section.game-library .game-play.single-game{
+    width: calc(100% / 2.2);
+    background-color: whitesmoke;
+    box-shadow: 3px 1px 3px #00000047;
+    padding: 0 0 0 0;
+}
+
 section.game-library .game-play h2 {
     text-align: center;
     color: var(--secondary-color);
